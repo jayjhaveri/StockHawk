@@ -36,5 +36,6 @@
 
     <!--detailActivity intent-->
     <string name="detail_intent" translatable="false">detail_intent</string>
+    <string name="stock_prices">%s Prices</string>
 
 </resources>

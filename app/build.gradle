@@ -62,5 +62,7 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     testCompile 'junit:junit:4.12'
+    compile 'com.facebook.stetho:stetho:1.4.2'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
 }
