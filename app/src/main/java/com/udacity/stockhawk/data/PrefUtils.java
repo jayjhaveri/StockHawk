@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.sync.QuoteSyncJob;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -55,10 +56,12 @@ public final class PrefUtils {
 
     public static void addStock(Context context, String symbol) {
         editStockPref(context, symbol, true);
+        QuoteSyncJob.updateWidgets(context);
     }
 
     public static void removeStock(Context context, String symbol) {
         editStockPref(context, symbol, false);
+        QuoteSyncJob.updateWidgets(context);
     }
 
     public static String getDisplayMode(Context context) {

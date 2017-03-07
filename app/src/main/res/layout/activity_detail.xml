@@ -1,15 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.udacity.stockhawk.ui.DetailActivity">
 
+    <LinearLayout
+        android:layout_weight="0.15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/detail_symbol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/detail_symbol_tv"
+            tools:text="Facebook" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/price_title"
+                android:textSize="@dimen/detail_price_tv"
+                android:textColor="@android:color/white"
+                tools:text="Price" />
+
+            <TextView
+                android:id="@+id/detail_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="end"
+                android:textSize="@dimen/detail_price_size"
+                tools:text="187" />
+
+            <TextView
+                android:id="@+id/detail_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.13"
+                android:layout_marginLeft="@dimen/margin_left_detail"
+                android:layout_marginStart="@dimen/margin_left_detail"
+                android:gravity="center"
+                android:textSize="@dimen/detail_change_size"
+                tools:text="187" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
     <com.github.mikephil.charting.charts.LineChart
+        android:layout_weight="4"
+        android:contentDescription="@string/line_chart"
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/margin_chart"
-        android:layout_height="match_parent"></com.github.mikephil.charting.charts.LineChart>
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_chart"></com.github.mikephil.charting.charts.LineChart>
 
 </LinearLayout>
+

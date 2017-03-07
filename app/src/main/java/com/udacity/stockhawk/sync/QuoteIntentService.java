@@ -12,6 +12,7 @@ public class QuoteIntentService extends IntentService {
         super(QuoteIntentService.class.getSimpleName());
     }
 
+
     @Override
     protected void onHandleIntent(Intent intent) {
         Timber.d("Intent handled");

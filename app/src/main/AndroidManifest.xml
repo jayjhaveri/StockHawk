@@ -30,7 +30,8 @@
         <provider
             android:name=".data.StockProvider"
             android:authorities="com.udacity.stockhawk"
-            android:exported="false" />
+            android:exported="false"
+            android:syncable="true" />
 
         <service
             android:name=".sync.QuoteJobService"
@@ -45,6 +46,26 @@
                 android:value=".ui.MainActivity" />
 
         </activity>
+
+        <!-- Detail Widget -->
+        <receiver
+            android:name=".widget.StockWidgetProvider"
+            android:label="@string/title_widget_detail"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.udacity.stockhawk.ACTION_DATA_UPDATED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_detail" />
+        </receiver>
+        <service
+            android:name=".widget.DetailWidgetRemoteViewsService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>

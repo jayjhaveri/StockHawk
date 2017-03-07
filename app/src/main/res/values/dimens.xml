@@ -1,4 +1,20 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="margin_chart">8dp</dimen>
+    <dimen name="widget_detail_default_height">180dp</dimen>
+    <dimen name="widget_detail_min_resize_width">220dp</dimen>
+    <dimen name="widget_detail_default_width">250dp</dimen>
+    <dimen name="widget_detail_min_resize_height">@dimen/widget_detail_default_height</dimen>
+    <dimen name="widget_title">24sp</dimen>
+    <dimen name="detail_symbol_tv">48sp</dimen>
+    <dimen name="detail_price_tv">24sp</dimen>
+    <dimen name="detail_price_size">24sp</dimen>
+    <dimen name="detail_change_size">24sp</dimen>
+    <dimen name="margin_left_detail">8dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_pressed">12dp</dimen>
+    <dimen name="editText_margin">4dp</dimen>
+    <dimen name="editText_margin_top">16dp</dimen>
+    <dimen name="tv_price_marginEnd">10sp</dimen>
+    <dimen name="tv_change_padding">3dp</dimen>
 </resources>

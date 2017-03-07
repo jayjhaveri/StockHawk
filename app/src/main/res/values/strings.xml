@@ -37,5 +37,13 @@
     <!--detailActivity intent-->
     <string name="detail_intent" translatable="false">detail_intent</string>
     <string name="stock_prices">%s Prices</string>
+    <string name="stock_not_found">Sorry %s does not exist</string>
+    <string name="title_widget_detail">StockHawk Widget</string>
+    <string name="empty_stock_list">No stocks</string>
+    <string name="add_stock">Add stock </string>
+    <string name="percentage_change">Percentage changes</string>
+    <string name="dollar_change">Dollar change</string>
+    <string name="line_chart">Chart</string>
+    <string name="price_title">Price</string>
 
 </resources>

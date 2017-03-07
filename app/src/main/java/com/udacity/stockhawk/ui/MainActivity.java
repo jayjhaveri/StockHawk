@@ -31,7 +31,7 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
-        StockAdapter.StockAdapterOnClickHandler {
+        StockAdapter.StockAdapterOnClickHandler, QuoteSyncJob.AfterGetQuotesListener {
 
     private static final int STOCK_LOADER = 0;
     @SuppressWarnings("WeakerAccess")
@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -68,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         swipeRefreshLayout.setRefreshing(true);
         onRefresh();
 
-        QuoteSyncJob.initialize(this);
+        QuoteSyncJob.initialize(this, this);
         getSupportLoaderManager().initLoader(STOCK_LOADER, null, this);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else {
             error.setVisibility(View.GONE);
         }
+
     }
 
     public void button(@SuppressWarnings("UnusedParameters") View view) {
@@ -122,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     void addStock(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
+
 
             if (networkUp()) {
                 swipeRefreshLayout.setRefreshing(true);
@@ -165,7 +172,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (PrefUtils.getDisplayMode(this)
                 .equals(getString(R.string.pref_display_mode_absolute_key))) {
             item.setIcon(R.drawable.ic_percentage);
+            item.setTitle(R.string.percentage_change);
         } else {
+            item.setTitle(R.string.dollar_change);
             item.setIcon(R.drawable.ic_dollar);
         }
     }
@@ -189,5 +198,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void afterFinish(final String symbol) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, getString(R.string.stock_not_found, symbol), Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);
+
+                PrefUtils.removeStock(MainActivity.this, symbol);
+            }
+        });
+
     }
 }

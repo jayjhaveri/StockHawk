@@ -31,11 +31,13 @@ import yahoofinance.quotes.stock.StockQuote;
 public final class QuoteSyncJob {
 
     private static final int ONE_OFF_ID = 2;
-    private static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
+    public static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
     private static final int PERIOD = 300000;
     private static final int INITIAL_BACKOFF = 10000;
     private static final int PERIODIC_ID = 1;
     private static final int YEARS_OF_HISTORY = 2;
+
+    public static AfterGetQuotesListener mAfterGetQuotes;
 
     private QuoteSyncJob() {
     }
@@ -73,7 +75,15 @@ public final class QuoteSyncJob {
 
 
                 Stock stock = quotes.get(symbol);
+
                 StockQuote quote = stock.getQuote();
+
+                if (quote.getPrice() == null) {
+                    Timber.d(quote.toString());
+                    mAfterGetQuotes.afterFinish(symbol);
+                    return;
+                }
+
 
                 float price = quote.getPrice().floatValue();
                 float change = quote.getChange().floatValue();
@@ -111,11 +121,20 @@ public final class QuoteSyncJob {
                             quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
 
             Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
+            updateWidgets(context);
             context.sendBroadcast(dataUpdatedIntent);
 
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
         }
+
+    }
+
+    public static void updateWidgets(Context context) {
+        // Setting the package ensures that only components in our app will receive the broadcast
+        Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED)
+                .setPackage(context.getPackageName());
+        context.sendBroadcast(dataUpdatedIntent);
     }
 
     private static void schedulePeriodic(Context context) {
@@ -136,11 +155,11 @@ public final class QuoteSyncJob {
     }
 
 
-    public static synchronized void initialize(final Context context) {
+    public static synchronized void initialize(final Context context, AfterGetQuotesListener afterGetQuotes) {
 
         schedulePeriodic(context);
         syncImmediately(context);
-
+        mAfterGetQuotes = afterGetQuotes;
     }
 
     public static synchronized void syncImmediately(Context context) {
@@ -168,5 +187,9 @@ public final class QuoteSyncJob {
         }
     }
 
+    public interface AfterGetQuotesListener {
+
+        void afterFinish(String symbol);
+    }
 
 }

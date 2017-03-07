@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.udacity.stockhawk.ui.DetailActivity">
+    <item
+        android:id="@+id/action_change_units"
+        android:icon="@drawable/ic_dollar"
+        android:orderInCategory="99"
+        android:title="@string/action_change_units"
+        app:showAsAction="always" />
+</menu>
