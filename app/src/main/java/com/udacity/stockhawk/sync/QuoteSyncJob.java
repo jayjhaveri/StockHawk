@@ -76,6 +76,11 @@ public final class QuoteSyncJob {
 
                 Stock stock = quotes.get(symbol);
 
+                if (stock == null) {
+                    mAfterGetQuotes.afterFinish(symbol);
+                    return;
+                }
+
                 StockQuote quote = stock.getQuote();
 
                 if (quote.getPrice() == null) {

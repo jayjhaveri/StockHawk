@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stock Hawk</string>
+    <string name="app_name" translatable="false">Stock Hawk</string>
 
     <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
 
@@ -12,33 +12,33 @@
     <string name="pref_display_mode_absolute_key">absolute</string>
     <string name="pref_display_mode_percentage_key">percentage</string>
 
-    <string name="default_stocks_yahoo">YHOO</string>
-    <string name="default_stocks_apple">AAPL</string>
-    <string name="default_stocks_microsoft">MSFT</string>
-    <string name="default_stocks_facebook">FB</string>
+    <string name="default_stocks_yahoo" translatable="false">YHOO</string>
+    <string name="default_stocks_apple" translatable="false">AAPL</string>
+    <string name="default_stocks_microsoft" translatable="false">MSFT</string>
+    <string name="default_stocks_facebook" translatable="false">FB</string>
 
 
     <string name="action_change_units">@string/pref_display_mode_key</string>
 
 
     <string name="dialog_title">Add Stock</string>
-    <string name="dialog_hint">Symbol (e.g. GOOG)</string>
+    <string name="dialog_hint" translatable="false">Symbol (e.g. GOOG)</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_add">Add</string>
 
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
 
-    <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
+    <string name="toast_stock_added_no_connectivity" translatable="false">Symbol %s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="action_settings">Settings</string>
 
     <!--detailActivity intent-->
     <string name="detail_intent" translatable="false">detail_intent</string>
-    <string name="stock_prices">%s Prices</string>
-    <string name="stock_not_found">Sorry %s does not exist</string>
-    <string name="title_widget_detail">StockHawk Widget</string>
+    <string name="stock_prices" translatable="false">%s Prices</string>
+    <string name="stock_not_found" translatable="false">Sorry %s does not exist</string>
+    <string name="title_widget_detail" translatable="false">StockHawk Widget</string>
     <string name="empty_stock_list">No stocks</string>
     <string name="add_stock">Add stock </string>
     <string name="percentage_change">Percentage changes</string>
